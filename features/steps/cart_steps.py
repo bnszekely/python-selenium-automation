@@ -4,6 +4,7 @@ from time import sleep
 
 
 CART_EMPTY_MSG = (By.XPATH, "//div[@data-test='boxEmptyMsg']")
+CART_NTBK_MSG = (By.XPATH, "//div[contains(text(),'Notebook')]")
 
 
 @then('Verify correct message is shown')
@@ -15,6 +16,6 @@ def verify_correct_message(context):
 
 @then('Verify notebook is in cart')
 def verify_notebook_in_cart_text(context):
-    actual_text = context.driver.find_element(By.XPATH, "//div[contains(text(),'Notebook')]").text
+    actual_text = context.driver.find_element(*CART_NTBK_MSG).text
     expected_text = 'notebook'
-    assert expected_text in actual_text, f'Error. Text {expected_text} not in {actual_text}'
+    assert expected_text in actual_text.lower(), f'Error. Text {expected_text} not in {actual_text}'
