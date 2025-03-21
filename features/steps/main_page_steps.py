@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 from behave import given, when, then
 from time import sleep
 
@@ -22,8 +23,9 @@ def click_cart_icon(context):
 
 @when('Click Sign In')
 def click_sign_in(context):
+    context.driver.wait.until(EC.visibility_of_element_located(SIGN_IN_BUTTON))
     context.driver.find_element(*SIGN_IN_BUTTON).click()
-    sleep(6)
+
 
 
 @when('Search for {search_word}')
@@ -40,7 +42,7 @@ def click_target_circle(context):
 
 @when('Click Target Help')
 def click_target_help(context):
-    sleep(6)
+    context.driver.wait.until(EC.visibility_of_element_located(TARGET_HELP))
     context.driver.find_element(*TARGET_HELP).click()
 
 

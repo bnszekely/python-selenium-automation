@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 from behave import given, when, then
 from time import sleep
 
@@ -11,7 +12,7 @@ VIEW_CART = (By.XPATH, "//a[@href='/cart']")
 
 @when('Click add to cart button')
 def click_add_to_cart(context):
-    sleep(12)
+    sleep(10)
     context.driver.find_element(*ADD_TO_CART_BTN).click()
 
 
@@ -32,4 +33,5 @@ def verify_found_results_text(context):
     actual_text = context.driver.find_element(*RESULTS_MSG).text
     expected_text = 'tea'
     assert expected_text in actual_text, f'Error. Text {expected_text} not in {actual_text}'
+
 

@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 from behave import given, when, then
 from time import sleep
 
@@ -9,8 +10,8 @@ SIGN_IN_TEXT = (By.CSS_SELECTOR, '.styles_ndsHeading__HcGpD.jpudjh')
 
 @when('Click Sign In from Right Side Menu')
 def click_sign_in_from_right_side_menu(context):
+    context.driver.wait.until(EC.element_to_be_clickable(SIGN_IN_BUTTON_RSM))
     context.driver.find_element(*SIGN_IN_BUTTON_RSM).click()
-sleep(6)
 
 
 @then('Verify Sign In Form Opens')
