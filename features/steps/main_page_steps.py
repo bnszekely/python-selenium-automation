@@ -4,7 +4,6 @@ from behave import given, when, then
 from time import sleep
 
 
-CART_ICON = (By.XPATH, "//a[@data-test='@web/CartLink']")
 SIGN_IN_BUTTON = (By.CSS_SELECTOR, '.sc-43f80224-3')
 SEARCH_FIELD = (By.ID, 'search')
 SEARCH_BTN = (By.XPATH, "//button[@data-test='@web/Search/SearchButton']")
@@ -13,12 +12,15 @@ TARGET_HELP = (By.XPATH, "//div[@aria-label='Target Help']")
 
 @given('Open Target main page')
 def open_target_main_page(context):
-    context.driver.get('https://www.target.com/')
+    context.app.main_page.open_main_page()
+    context.driver.wait.until(
+        EC.element_to_be_clickable(SEARCH_FIELD),
+        message='Search field not clickable')
 
 
 @when('Click on Cart Icon')
 def click_cart_icon(context):
-    context.driver.find_element(*CART_ICON).click()
+    context.app.header.click_cart_icon()
 
 
 @when('Click Sign In')
@@ -27,12 +29,10 @@ def click_sign_in(context):
     context.driver.find_element(*SIGN_IN_BUTTON).click()
 
 
-
 @when('Search for {search_word}')
 def search_product(context, search_word):
     sleep(2)
-    context.driver.find_element(*SEARCH_FIELD).send_keys(search_word)
-    context.driver.find_element(*SEARCH_BTN).click()
+    context.app.header.search(search_word)
 
 
 @when('Click on Target Circle')

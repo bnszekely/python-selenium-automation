@@ -28,10 +28,6 @@ def click_view_cart_side_menu(context):
     context.driver.find_element(*VIEW_CART).click()
 
 
-@then('Verify correct search results shown for tea')
-def verify_found_results_text(context):
-    actual_text = context.driver.find_element(*RESULTS_MSG).text
-    expected_text = 'tea'
-    assert expected_text in actual_text, f'Error. Text {expected_text} not in {actual_text}'
-
-
+@then('Verify correct search results shown for {expected_text}')
+def verify_found_results_text(context, expected_text):
+    context.app.search_results_page.verify_search_results(expected_text)
