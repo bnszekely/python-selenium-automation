@@ -5,6 +5,8 @@ class Header(Page):
     SEARCH_FIELD = (By.ID, 'search')
     SEARCH_BTN = (By.XPATH, "//button[@data-test='@web/Search/SearchButton']")
     CART_ICON = (By.XPATH, "//a[@data-test='@web/CartLink']")
+    SIGN_IN_BUTTON = (By.XPATH, "//a[@id='account-sign-in']")
+
 
     def search(self, text):
         print(f'Searching for {text}')
@@ -13,3 +15,6 @@ class Header(Page):
 
     def click_cart_icon(self):
         self.click(*self.CART_ICON)
+
+    def click_sign_in_button(self):
+        self.click(*self.SIGN_IN_BUTTON)

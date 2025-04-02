@@ -4,6 +4,7 @@ Feature: Test Scenarios for Search functionality
     Given Open target main page
     When Search for tea
     Then Verify correct search results shown for tea
+    And Verify tea in url
 
 
   Scenario: User can add a product to cart
